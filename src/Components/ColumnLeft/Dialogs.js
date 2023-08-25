@@ -32,6 +32,7 @@ import FileStore from '../../Stores/FileStore';
 import FilterStore from '../../Stores/FilterStore';
 import TdLibController from '../../Controllers/TdLibController';
 import './Dialogs.css';
+import { Nav } from '@fluentui/react';
 
 const defaultTimeout = {
     enter: duration.enteringScreen,
@@ -179,16 +180,16 @@ class Dialogs extends Component {
         const { openSettings, openContacts, openSearch, openNewGroup, openNewChannel } = this.state;
         if (openSettings || openContacts || openSearch || openNewGroup || openNewChannel) {
             this.setState({
-                    openContacts: false,
-                    openSettings: false,
-                    openSearch: false,
-                    openNewGroup: false,
-                    openNewChannel: false,
-                    timeout: 0
-                }, () => {
-                    this.setState({
-                        timeout: defaultTimeout
-                    });
+                openContacts: false,
+                openSettings: false,
+                openSearch: false,
+                openNewGroup: false,
+                openNewChannel: false,
+                timeout: 0
+            }, () => {
+                this.setState({
+                    timeout: defaultTimeout
+                });
             });
         }
     };
@@ -443,26 +444,32 @@ class Dialogs extends Component {
 
         return (
             <>
+                <Filters />
                 <div className='dialogs'>
                     <div className='sidebar-page'>
-                        <DialogsHeader
+                        {/* <DialogsHeader
                             ref={this.dialogsHeaderRef}
                             openSearch={openSearch}
                             timeout={timeout !== 0}
                             onClick={this.handleHeaderClick}
                             onSearch={this.handleSearch}
                             onSearchTextChange={this.handleSearchTextChange}
-                        />
+                        /> */}
                         <div className='dialogs-content'>
+                            <div>
+
+                            </div>
                             <div className='dialogs-content-internal'>
-                                <Filters/>
+                                {/* <Nav> */}
+
                                 {/*<div className='sidebar-page-top-divider' style={{ zIndex: 1 }}/>*/}
                                 <DialogsList
-                                    type='chatListMain'
-                                    ref={this.dialogListRef}
-                                    cacheItems={mainCacheItems}
-                                    onSaveCache={this.handleSaveCache}
-                                />
+                                        type='chatListMain'
+                                        ref={this.dialogListRef}
+                                        cacheItems={mainCacheItems}
+                                        onSaveCache={this.handleSaveCache}
+                                    />
+                                {/* </Nav> */}
                             </div>
                             <CSSTransition
                                 classNames='search'
@@ -478,7 +485,7 @@ class Dialogs extends Component {
                                 />
                             </CSSTransition>
                         </div>
-                        {/*<UpdatePanel />*/}
+                        <UpdatePanel />
                     </div>
 
                     <SidebarPage open={openArchive} timeout={timeout} onClose={this.handleCloseArchive}>
@@ -505,7 +512,7 @@ class Dialogs extends Component {
                         <NewChannel />
                     </SidebarPage>
 
-                    <SidebarDialog/>
+                    <SidebarDialog />
                 </div>
             </>
         );

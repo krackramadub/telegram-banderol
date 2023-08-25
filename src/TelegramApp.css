@@ -28,6 +28,7 @@ body {
 
     scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
     scrollbar-width: thin;
+
 }
 
 ::-webkit-scrollbar {
@@ -111,8 +112,7 @@ mark {
     max-width: 1680px;
 }
 
-.item-selected {
-}
+.item-selected {}
 
 .pointer {
     cursor: pointer;
@@ -129,4 +129,80 @@ mark {
 
 .scrollbars-hidden::-webkit-scrollbar {
     display: none;
+}
+
+.owa_calendar,
+.owa_error {
+    padding: 1px;
+    border-width: 0;
+    height: 30px;
+    width: 48px;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.owa_gear,
+.owa_quest {
+    padding: 1px;
+    border-width: 0;
+    height: 30px;
+    /* width: 48px; */
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    color: #666;
+    background-color: #eaeaea;
+}
+
+.owa_tab {
+    cursor: pointer;
+    font-size: 13px;
+    padding: 0 8px;
+    height: 30px;
+}
+
+.owa_tab:hover {
+    background-color: #a5b9c786;
+}
+
+.owa_calendar:hover,
+.owa_error:hover {
+    background-color: #fff;
+    color: #0072C6;
+}
+
+.owa_calendar>span {
+    font-size: 10px;
+    /* padding-left: 6px; */
+    vertical-align: top;
+    margin: 2px 4px 0px;
+}
+
+.owa_error>span {
+    font-size: 10px;
+    /* padding-left: 6px; */
+    vertical-align: top;
+    margin: 2px 4px 0px;
+}
+
+
+.owa_calendar::before {
+    font-family: 'o365Icons' !important;
+    content: '\e013 ';
+}
+
+.owa_error::before {
+    font-family: 'o365Icons' !important;
+    content: '\e00b ';
+}
+
+.owa_gear::before {
+    font-family: 'o365Icons' !important;
+    content: '\e035 ';
+}
+
+.owa_quest::before {
+    font-family: 'o365Icons' !important;
+    content: '\e006 ';
 }

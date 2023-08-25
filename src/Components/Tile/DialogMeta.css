@@ -15,3 +15,7 @@
 .dialog-meta .status {
     color: var(--dialog-meta-read-color);
 }
+
+.meta_unread {
+    color: #0072C6
+}

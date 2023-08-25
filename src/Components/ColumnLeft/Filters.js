@@ -17,6 +17,7 @@ import CacheStore from '../../Stores/CacheStore';
 import FilterStore from '../../Stores/FilterStore';
 import LocalizationStore from '../../Stores/LocalizationStore';
 import './Filters.css';
+import { Nav } from '@fluentui/react';
 
 class Filters extends React.Component {
     constructor(props) {
@@ -32,7 +33,9 @@ class Filters extends React.Component {
         this.state = {
             isSmallWidth,
             filters,
-            chatList
+            chatList,
+            selectedFilter: '0',
+            showFilterPanel: true
         };
 
         this.onWindowResize = throttle(this.onWindowResize, 250);
@@ -130,16 +133,17 @@ class Filters extends React.Component {
         let left = 9;
         if (chatList['@type'] === 'chatListMain') {
             const main = this.filterRef.get('chatListMain');
-            if (main){
+            if (main) {
                 item = main.firstChild;
                 left = item.offsetLeft;
             }
         } else if (chatList['@type'] === 'chatListFilter') {
             for (let i = 0; i < filters.length; i++) {
+                // debugger
                 const filter = this.filterRef.get('chatListFilter_id=' + filters[i].id);
                 if (filters[i].id === chatList.chat_filter_id) {
-                    item = filter.firstChild;
-                    left = item.offsetLeft;
+                    // item = filter.firstChild;
+                    // left = item.offsetLeft;
                     break;
                 }
             }
@@ -152,7 +156,7 @@ class Filters extends React.Component {
             filterSelection.style.cssText = `left: ${left - padding}px; width: ${item.scrollWidth + 2 * padding}px; ${transitionStyle}`;
         }
 
-        if (item && transition){
+        if (item && transition) {
             const { animator } = this;
 
             if (animator) {
@@ -224,40 +228,107 @@ class Filters extends React.Component {
         event.stopPropagation();
     };
 
+    handleClickFilter = (_, item) => {
+        openChatList({ '@type': 'chatListFilter', chat_filter_id: item.id });
+
+        // this.props.set
+        this.setState({
+            selectedFilter: item.id.toString()
+        })
+    }
+
+    methodGenerateFilterNav(filters) {
+        const { t } = this.props;
+        console.log('t', t)
+        const { isSmallWidth } = this.state;
+
+        let _filters = [{}]
+        _filters[0].links = filters.map(x => {
+
+            return {
+                '@type': x['@type'],
+                'name': x.title,
+                'key': x.id.toString(),
+                'id': x.id,
+                'icon_name': x.icon_name,
+                'icon': x.icon_name
+            }
+        })
+        _filters[0].name = 'Favorites'
+        // _filters[0].isExpanded = true
+        _filters[0].key = '1'
+        _filters[0].expandAriaLabel = 'Expand Favorites section';
+
+        let allChatFilter = [{
+            '@type': 'chatListMain',
+            'name': isSmallWidth ? getFirstLetter(t('FilterAllChats')) : t('FilterAllChats'),
+            'key': '0',
+            'id': '0',
+            // 'icon_name': x.icon_name,
+            // 'icon': x.icon_name
+        }]
+        _filters[0].links = allChatFilter.concat(_filters[0].links)
+
+
+        return _filters
+    }
+
+
     render() {
         const { t } = this.props;
-        const { filters, chatList, isSmallWidth } = this.state;
+        const { filters, chatList, isSmallWidth, selectedFilter, showFilterPanel } = this.state;
 
         if (!filters) return null;
         if (!filters.length) return null;
 
         this.filterRef = new Map();
+
+        // let customFilters = this.methodGenerateFilterNav(filters)
+
+        console.log('filters', filters)
+
         return (
-            <div className='tabs'>
-                <div className='tabs-bottom-border'/>
-                <div ref={this.filtersRef} className='filters' onWheel={this.handleWheel}>
+            <div className='tabs_' style={{width: 215}}>
+                <div className='tabs-bottom-border_' />
+                <div className='create_message_section'>
+                    <span className='create_message_icon_plus wf-size-x20-circle'>
+                        <span></span>
+                    </span>
+                    <span className='create_message_label'>Создать сообщение</span>
+                </div>
+                <div className='filter_section' onClick={() => this.setState({showFilterPanel: !showFilterPanel})}>
+                    <span autoid="_n_h1">
+                        <span class={`_n_S5 owaimg wf wf-size-x20 wf-owa-triangle-slant ${showFilterPanel ? 'wf-family-owa' : 'wf-family-owa_closed'} ms-font-color-neutralSecondary`} role="presentation"></span>
+                    </span>
+                    <span autoid='_n_i1' role='treeitem' style={{ verticalAlign: 'text-bottom', height: 12 }}>Favorites</span>
+                </div>
+                <div ref={this.filtersRef} className='filters_' onWheel={this.handleWheel} style={{display: showFilterPanel ? 'block': 'none'}}>
                     <div
                         ref={r => this.filterRef.set('chatListMain', r)}
-                        className={classNames('filter', { 'item-selected': chatList['@type'] === 'chatListMain'})}
+                        className={classNames('filter', { 'item-selected': chatList['@type'] === 'chatListMain' })}
                         onMouseDown={this.handleMainClick}
                         title={isSmallWidth ? t('FilterAllChats') : null}>
                         <span>{isSmallWidth ? getFirstLetter(t('FilterAllChats')) : t('FilterAllChats')}</span>
                     </div>
-                    {filters.map(x => (
-                        <div
-                            key={x.id}
-                            ref={r => this.filterRef.set('chatListFilter_id=' + x.id, r)}
-                            className={classNames('filter', { 'item-selected': chatList.chat_filter_id === x.id})}
-                            onMouseDown={e => this.handleFilterClick(e, x.id)}
-                            title={isSmallWidth ? x.title : null}>
-                            <span>{isSmallWidth ? getFirstLetter(x.title) : x.title}</span>
-                        </div>))}
-                    <div ref={this.filterSelectionRef} className='filter-selection'/>
+                    <div >
+                        {filters.map(x => (
+                            <div
+                                key={x.id}
+                                ref={r => this.filterRef.set('chatListFilter_id=' + x.id, r)}
+                                className={classNames('filter', { 'item-selected': chatList.chat_filter_id === x.id })}
+                                onMouseDown={e => this.handleFilterClick(e, x.id)}
+                                title={isSmallWidth ? x.title : null}>
+                                <span>{isSmallWidth ? getFirstLetter(x.title) : x.title}</span>
+                            </div>))
+                        }
+                    </div>
+                    <div ref={this.filterSelectionRef} className='filter-selection' />
                 </div>
             </div>
         );
     }
 }
+
 
 Filters.propTypes = {
 

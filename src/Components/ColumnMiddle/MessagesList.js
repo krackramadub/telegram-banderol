@@ -1729,7 +1729,7 @@ class MessagesList extends React.Component {
                 </div>
                 <div className='messages-list-top-panel'>
                     <GroupCallJoinPanel chatId={chatId}/>
-                    <ActionBar chatId={chatId} />
+                    {/* <ActionBar chatId={chatId} /> */}
                 </div>
                 <Placeholder />
                 {scrollDownVisible && (

@@ -74,11 +74,13 @@
 
 .tile-first-row {
     display: flex;
+    font-size: 17px;
 }
 
 .tile-second-row {
     margin: 3px 0 0 0;
     display: flex;
+    font-size: 12px !important;
 }
 
 .chat-big .chat-inner-wrapper {
@@ -115,4 +117,26 @@
 
 .page-small .dialog-inner-wrapper {
     /*display: none;*/
+}
+
+
+.dialog {
+    padding: 3px !important;
+}
+
+.dialog.item-selected {
+    background-color: #CDE6F7 !important;
+}
+.dialog-content {
+    height: 30px;
+    white-space: break-spaces;
+    line-height: normal;
+}
+
+.dialog-wrapper {
+    padding: 0px 1px 9px 9px;
+}
+
+.dialog-inner-wrapper {
+    margin-left: 20px;
 }

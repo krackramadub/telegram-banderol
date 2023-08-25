@@ -31,8 +31,7 @@
     background: var(--badge-muted);
 }
 
-.dialog-badge-text {
-}
+.dialog-badge-text {}
 
 .dialog-badge-mention {
     min-width: 24px;
@@ -97,4 +96,44 @@
     flex-direction: column;
     margin-left: 6px;
     height: 48px;
+}
+
+.dialog {
+    border-bottom: 1px solid #eef0f2;
+    border-radius: 0px !important;
+}
+
+.dialog_unread_border {
+    position: absolute;
+    top: 1px;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #2A8DD4;
+    /* border: 1px solid #333;
+    
+    position: absolute;
+    padding: -3px;
+    left: 0;
+    top: 0;
+    /* border-bottom: 2px; */
+    /* bottom: 0px; */
+}
+
+.dialog-badge {
+    background: none;
+    color: #0072C6;
+    /* min-height: 16px; */
+    /* min-width: 16px */
+    font-size: 12px;
+}
+
+.dialog-badge,
+.dialog-badge-pinned {
+    background: none;
+    border-radius: 0px;
+    margin: 0;
+    padding: 0;
+    color: #0072C6;
+    justify-content: left;
 }

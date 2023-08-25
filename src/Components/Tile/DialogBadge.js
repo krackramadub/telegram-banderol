@@ -129,9 +129,13 @@ class DialogBadge extends React.Component {
                     </div>
                 )}
                 {showUnreadCount && (
-                    <div className={classNames({ 'dialog-badge-muted': isMuted }, 'dialog-badge')}>
-                        <span className='dialog-badge-text'>{unread_count > 0 ? unread_count : ''}</span>
-                    </div>
+                    <>
+                        <span style={{padding: '0px 4px'}}>{' '}/{' '}</span>
+                        <div className={classNames({ 'dialog-badge-muted': isMuted }, 'dialog-badge')}>
+                            <div className='dialog_unread_border'></div>
+                            <span className='dialog-badge-text'>{unread_count > 0 ? unread_count : ''}</span>
+                        </div>
+                    </>
                 )}
                 {isPinned && !showUnreadCount && !showUnreadMentionCount && (
                     <div className='dialog-badge-pinned'>

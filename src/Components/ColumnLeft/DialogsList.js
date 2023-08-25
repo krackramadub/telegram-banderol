@@ -25,6 +25,8 @@ import './DialogsList.css';
 import FilterStore from '../../Stores/FilterStore';
 import DialogsHeader from './DialogsHeader';
 import Filters from './Filters';
+import { Image, ImageFit } from '@fluentui/react';
+import { Icon } from '@material-ui/core';
 
 class DialogListItem extends React.Component {
     shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -448,11 +450,31 @@ class DialogsList extends React.Component {
         if (stub) {
             return <DialogPlaceholder key={index} index={index} />
         }
-
         return <DialogListItem key={x} chatId={x} chatList={chatList} hidden={this.hiddenChats.has(x)} style={style} />;
 
         // return <Dialog key={x} chatId={x} hidden={this.hiddenChats.has(x)} style={style} />
     };
+
+    RenderDialogListsCustom = ({ item, index = 0 }) => {
+
+        // return (
+        //     <div data-is-focusable={true}>
+        //         <Image
+        //             // className={classNames.itemImage}
+        //             src="https://res.cdn.office.net/files/fabric-cdn-prod_20230815.002/office-ui-fabric-react-assets/fluent-placeholder.svg"
+        //             width={50}
+        //             height={50}
+        //             imageFit={ImageFit.cover}
+        //         />
+        //         <div >
+        //             <div >{item?.name}</div>
+        //             <div >{`Item ${index}`}</div>
+        //             <div>{item?.description}</div>
+        //         </div>
+        //         <Icon iconName={'ChevronRight'} />
+        //     </div>
+        // );
+    }
 
     render() {
         const { cacheItems } = this.props;
@@ -484,15 +506,18 @@ class DialogsList extends React.Component {
         }
 
         return (
-            <VirtualizedList
-                ref={this.listRef}
-                className='dialogs-list'
-                source={this.source}
-                rowHeight={76}
-                overScanCount={20}
-                renderItem={x => this.renderItem(x, this.source, this.stub)}
-                onScroll={this.handleScroll}
-            />
+            <>
+                <VirtualizedList
+                    ref={this.listRef}
+                    className='dialogs-list'
+                    source={this.source}
+                    rowHeight={76}
+                    overScanCount={20}
+                    renderItem={x => this.renderItem(x, this.source, this.stub)}
+                    onScroll={this.handleScroll}
+                />
+                {/* <this.RenderDialogListsCustom item={this.source} ref={this.listRef}/> */}
+            </>
         );
     }
 }

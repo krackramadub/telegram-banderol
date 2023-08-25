@@ -83,7 +83,10 @@ class Placeholder extends React.Component {
             <div className='placeholder'>
                 <div className='placeholder-wrapper'>
                     {/*<BubblesLogo className='placeholder-logo' />*/}
-                    <div className='placeholder-meta'>{t('SelectChatToStartMessaging')}</div>
+                    <div className='placeholder-meta'>
+                        {'Выберите элемент для чтения.Щелкните здесь, чтобы после входа всегда выбирать первую беседу.'}
+                        {/* {t('SelectChatToStartMessaging')} */}
+                    </div>
                 </div>
             </div>
         );

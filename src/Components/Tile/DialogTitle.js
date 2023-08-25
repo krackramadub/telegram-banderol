@@ -9,7 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import CheckDecagramIcon from '../../Assets/Icons/Verified';
-import { getChatTitle, isChatVerified } from '../../Utils/Chat';
+import { getChatTitle, isChatVerified, showChatUnreadCount } from '../../Utils/Chat';
 import ChatStore from '../../Stores/ChatStore';
 import './DialogTitle.css';
 
@@ -55,10 +55,10 @@ class DialogTitle extends React.Component {
 
         const isVerified = isChatVerified(chatId);
         const title = getChatTitle(chatId, showSavedMessages, t);
-
+        const showUnreadCount = showChatUnreadCount(chatId);
         return (
             <div className='dialog-title'>
-                <span className='dialog-title-span'>{title}</span>
+                <span className={`dialog-title-span ${showUnreadCount > 0 ? 'dialog_title_unread' : ''}`}>{title}</span>
                 {isVerified && <CheckDecagramIcon className='dialog-title-icon' />}
             </div>
         );

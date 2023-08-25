@@ -73,3 +73,7 @@
     max-width: calc(75% - 89px);
     flex: 1 1 calc(75% - 89px);
 }
+
+.dialog-details-wrapper {
+    background: #fff;
+}

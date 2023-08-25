@@ -32,3 +32,7 @@
     height: 16px;
     color: var(--color-accent-main);
 }
+
+.dialog_title_unread {
+    color: #0072C6
+}

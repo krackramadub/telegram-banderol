@@ -18,6 +18,10 @@ import {
 import TdLibController from './Controllers/TdLibController';
 import './index.css';
 
+
+import { initializeIcons } from '@fluentui/font-icons-mdl2';
+initializeIcons();
+
 ReactDOM.render(
     <Router>
         <Route path='' component={TelegramApp} />

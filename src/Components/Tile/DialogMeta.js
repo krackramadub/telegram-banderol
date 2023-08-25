@@ -8,7 +8,7 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import Status from '../Message/Status';
-import { getLastMessageDate, isMeChat } from '../../Utils/Chat';
+import { getLastMessageDate, isMeChat, showChatUnreadCount } from '../../Utils/Chat';
 import ChatStore from '../../Stores/ChatStore';
 import './DialogMeta.css';
 
@@ -85,7 +85,7 @@ class DialogMeta extends React.Component {
         if (!date) return null;
 
         const { id, is_outgoing } = last_message;
-
+        const showUnreadCount = showChatUnreadCount(chatId);
         return (
             <div className='dialog-meta'>
                 {is_outgoing && !isMe && (
@@ -94,7 +94,7 @@ class DialogMeta extends React.Component {
                         <span> </span>
                     </>
                 )}
-                {date}
+                <span className={`${showUnreadCount > 0 ? 'meta_unread' : ''}`}>{date}</span>
             </div>
         );
     }

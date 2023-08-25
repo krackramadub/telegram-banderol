@@ -34,6 +34,13 @@
     margin: 12px 0;
     padding: 15px 16px;
     color: white;
+    background-color: #0072C6;
+    border-radius: 0px;
+    
+}
+.auth-button:hover {
+    background-color: none;
+    
 }
 
 .auth-input {
@@ -72,4 +79,14 @@
     cursor: pointer;
     height: 54px;
     margin: 12px 0;
+}
+
+.MuiOutlinedInput-root {
+    border-radius: 0px;
+}
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+    padding: 0px
+}
+.MuiOutlinedInput-input {
+    padding: 11px;
 }

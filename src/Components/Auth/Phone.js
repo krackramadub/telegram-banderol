@@ -435,13 +435,13 @@ class Phone extends React.Component {
 
         return (
             <form className='auth-root' autoComplete='off'>
-                <Typography variant='body1' className='auth-title'>
+                {/* <Typography variant='body1' className='auth-title'>
                     <span>{title}</span>
                     {connecting && <HeaderProgress />}
-                </Typography>
-                <Typography variant='body1' className='auth-subtitle' style={{ width: 264 }}>
+                </Typography> */}
+                {/* <Typography variant='body1' className='auth-subtitle' style={{ width: 264 }}>
                     {t('StartText')}
-                </Typography>
+                </Typography> */}
                 <Autocomplete
                     debug={false}
                     id='country-select'
@@ -495,7 +495,7 @@ class Phone extends React.Component {
                     variant='contained'
                     disableElevation
                     fullWidth
-                    color='primary'
+                    color='success'
                     disabled={loading}
                     onClick={this.handleDone}>
                     {t('Next')}

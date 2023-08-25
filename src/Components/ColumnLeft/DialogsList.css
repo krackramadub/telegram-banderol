@@ -25,3 +25,7 @@
 .dialogs-list-item {
     margin: 2px 0;
 }
+
+.dialogs-list {
+    padding: 0px;
+}

@@ -46,3 +46,11 @@
 
 .placeholder-meta-wrapper {
 }
+
+.placeholder-meta {
+    border-radius: 0;
+    padding: 25px;
+    background-color: #f4f4f4;
+    color: #666;
+    max-width: 300px;
+}

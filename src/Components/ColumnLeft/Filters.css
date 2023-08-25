@@ -7,6 +7,7 @@
 
 .tabs {
     position: relative;
+    background-color: #fff;
 }
 
 .filters {
@@ -29,19 +30,68 @@
     top: 40px;
     height: 4px;
     border-radius: 2px 2px 0 0;
-    background: var(--color-accent-main);
+    /* background: var(--color-accent-main); */
 }
 
 .filter {
-    height: 44px;
+    height: 24px;
     user-select: none;
     white-space: nowrap;
-    padding: 0 19px;
-    display: flex;
+    /* padding: 0 19px; */
     align-items: center;
-    justify-content: center;
     cursor: pointer;
     color: var(--text-secondary);
+    font-size: 12px;
+    padding-left: 34px;
+}
+
+.create_message_section {
+    height: 70px;
+    padding: 18px 0 0 17px;
+    width: auto;
+    inset: 0px 0px auto;
+}
+
+.create_message_icon_plus {
+    border-style: solid;
+    border-radius: .8em;
+    text-align: center;
+    margin: 2px;
+    float: left;
+    color: #0072C6
+}
+
+.create_message_label {
+    font-size: 19px;
+    line-height: 19px;
+    padding-right: 1px;
+    padding-left: 3px;
+    color: #0072C6
+}
+
+.wf-size-x20-circle {
+    font-size: 15px !important;
+    padding: 1px !important;
+    border-width: 2px !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.create_message_icon_plus::before {
+    font-family: 'o365Icons' !important;
+    content: '\e004 ';
+}
+
+.filter_section {
+    height: 24px;
+    user-select: none;
+    white-space: nowrap;
+    padding: 1px 0 4px 17px;
+    align-items: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 12px;
+    display: flex;
 }
 
 .filters::after {
@@ -54,5 +104,56 @@
 }
 
 .filter.item-selected {
-    color: var(--color-accent-main);
+    color: #333;
+    /* var(--color-accent-main); */
+    background-color: #CDE6F7;
+    font-weight: bold;
+}
+
+.ms_filter_nav {
+    width: 208px;
+    height: 350px;
+    boxSizing: 'border-box';
+    border: '1px solid #eee';
+    overflowY: 'auto';
+}
+
+._n_S5 {
+    vertical-align: text-bottom;
+    width: 12px;
+    height: 12px;
+    margin: 0 0 4px 0;
+    position: relative;
+}
+
+.wf-size-x20 {
+    font-size: 20px !important;
+}
+
+@font-face {
+    font-family: 'o365Icons';
+    src: url('../../Assets/fonts/office365icons.woff');
+}
+
+.wf {
+    speak: none;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.wf-family-owa {
+    font-family: 'o365Icons' !important;
+}
+
+.wf-family-owa::before {
+    content: '\e05c ';
+}
+
+.wf-family-owa_closed::before {
+    font-family: 'o365Icons' !important;
+    content: '\e054 ';
 }

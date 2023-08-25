@@ -41,3 +41,20 @@
     text-align: center;
     display: flex;
 }
+
+.owa_sidebar {
+    background-color: #0072C6;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    display: inline-block;
+    width: 332px;
+}
+.owaLogoContainer {
+    margin: 50% 25%;
+}
+
+.signInImageHeader {
+    margin-top: 50%;
+}

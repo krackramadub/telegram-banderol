@@ -161,7 +161,7 @@ export class VirtualizedList extends React.Component {
                 <div style={style.listWrapper((source || []).length * rowHeight)}>
                     {items}
                 </div>
-                {/*<div className='vlist-top-border'/>*/}
+                <div className='vlist-top-border'/>
             </div>
         );
     }
